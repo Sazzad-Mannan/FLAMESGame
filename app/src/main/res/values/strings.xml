@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">FLAMES GAME</string>
+    <string name="link"><u>How it works?</u></string>
+    <string name="how">F= Friend\nL= Love\nA= Affection\nM= Marriage\nE= Enemies\nS= Siblings/Soulmate.\n\nSuppose your name is John \nAnd your partner\'s name is Anny. \nFirst we will cut all similar alphabets match in both words.\nHere similar alphabets are n \nAfter cutting n we get joh any \nCount the number of alphabet remaining. \nHere is 6. \nNow count this number in FLAMES word,check where it stop.\nHere it stops in alphabet S.\nSo result will be S=Siblings/Soulmate.\n</string>
+    <string name="fun">[NB: It\'s a fun game,it don\'t indicate real relationship prediction.]</string>
+</resources>
