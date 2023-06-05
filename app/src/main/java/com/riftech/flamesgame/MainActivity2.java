@@ -77,6 +77,9 @@ public class MainActivity2 extends AppCompatActivity {
     public void onBackPressed() {
         intent = new Intent(getBaseContext(), MainActivity.class);
 
+// set the new task and clear flags
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
         showInterstitial();
         //Toast.makeText(getApplicationContext(), "Hello toast!", Toast.LENGTH_SHORT).show();
 
