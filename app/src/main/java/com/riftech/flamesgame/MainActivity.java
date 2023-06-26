@@ -3,12 +3,18 @@ package com.riftech.flamesgame;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdError;
@@ -35,11 +41,35 @@ public class MainActivity extends AppCompatActivity {
     private View v;
     public Intent intent,intent2;
     private static final String TAG = "MainActivity";
+    Button btn1;
+    TextView txt1;
+    AlertDialog.Builder builder;
+    AlertDialog customAlertDialog;
+    SharedPreferences sharedPreferences;
+    String selected_lang,st;
+    String[] countries;
+    int selected_index;
+    String toast_st;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Storing data into SharedPreferences
+        sharedPreferences = getSharedPreferences("MySharedPref",MODE_PRIVATE);
+        if(!sharedPreferences.contains("index")) {
+// Creating an Editor object to edit(write to the file)
+            SharedPreferences.Editor myEdit = sharedPreferences.edit();
+
+// Storing the key and its value as the data fetched from edittext
+            myEdit.putInt("index",0);
+
+// Once the changes have been made, we need to commit to apply those changes made,
+// otherwise, it will throw an error
+            myEdit.apply();
+        }
+
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
@@ -52,11 +82,17 @@ public class MainActivity extends AppCompatActivity {
         mAdView.loadAd(adRequest);
 
 
-        loadAd2();
+
 
         pgsBar = (ProgressBar) findViewById(R.id.pBar);
         et1=(EditText) findViewById(R.id.editText2);
         et2=(EditText) findViewById(R.id.editText3);
+        btn1=(Button) findViewById(R.id.button);
+        txt1=(TextView) findViewById(R.id.textView4);
+
+        changelang();
+
+
     }
 
 
@@ -65,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
     public void show_how( final View view) {
 
         intent2 = new Intent(getBaseContext(), Main2Activity.class);
-        //showInterstitial2();
         gotoActivity2(intent2);
 
     }
@@ -73,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         String name1=et1.getText().toString();
         String name2=et2.getText().toString();
         if (name1.matches("")||name2.matches("")) {
-            Toast.makeText(this, "You did not enter a name", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, toast_st, Toast.LENGTH_SHORT).show();
             return;
         }
         pgsBar.setVisibility(v.VISIBLE);
@@ -85,7 +120,9 @@ public class MainActivity extends AppCompatActivity {
         intent = new Intent(getBaseContext(), MainActivity2.class);
         //intent.putExtra("percentage", percentage);
         intent.putExtra("percentage2", percentage2);
-        intent.putExtra("names", name1+" & "+name2);
+        intent.putExtra("name1", name1);
+        intent.putExtra("name2", name2);
+
 
         gotoActivity(intent);
 
@@ -136,78 +173,154 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public void loadAd2() {
-        AdRequest adRequest3 = new AdRequest.Builder().build();
-//ca-app-pub-3940256099942544/1033173712
-//ca-app-pub-7831928589958637/3640763896
-        InterstitialAd.load(this,"ca-app-pub-7831928589958637/3640763896", adRequest3,
-                new InterstitialAdLoadCallback() {
-                    @Override
-                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-                        // The mInterstitialAd reference will be null until
-                        // an ad is loaded.
-                        mInterstitialAd2 = interstitialAd;
-                        Log.i(TAG, "onAdLoaded");
-                        //Toast.makeText(MainActivity.this, "onAdLoaded()", Toast.LENGTH_SHORT).show();
-                        interstitialAd.setFullScreenContentCallback(
-                                new FullScreenContentCallback() {
-                                    @Override
-                                    public void onAdDismissedFullScreenContent() {
-                                        // Called when fullscreen content is dismissed.
-                                        // Make sure to set your reference to null so you don't
-                                        // show it a second time.
-                                        MainActivity.this.mInterstitialAd2 = null;
-                                        Log.d("TAG", "The ad was dismissed.");
 
-                                        loadAd2();
-                                        gotoActivity2(intent2);
-                                        //dismissed();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // R.menu.mymenu is a reference to an xml file named mymenu.xml which should be inside your res/menu directory.
+        // If you don't have res/menu, just create a directory named "menu" inside res
+        getMenuInflater().inflate(R.menu.change, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
-                                    }
+    // handle button activities
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
 
-                                    @Override
-                                    public void onAdFailedToShowFullScreenContent(AdError adError) {
-                                        // Called when fullscreen content failed to show.
-                                        // Make sure to set your reference to null so you don't
-                                        // show it a second time.
-                                        MainActivity.this.mInterstitialAd2 = null;
-                                        Log.d("TAG", "The ad failed to show.");
-                                    }
+        if (id == R.id.action_favorite) {
+            // do something here
+            // single item array instance to store which element is selected by user initially
+            // it should be set to zero meaning none of the element is selected by default
+            selected_index = sharedPreferences.getInt("index", 0);
+            final int[] checkedItem = {selected_index};
 
-                                    @Override
-                                    public void onAdShowedFullScreenContent() {
-                                        // Called when fullscreen content is shown.
-                                        Log.d("TAG", "The ad was shown.");
-                                    }
-                                });
-                    }
+            // AlertDialog builder instance to build the alert dialog
+            builder = new AlertDialog.Builder(MainActivity.this);
 
-                    @Override
-                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                        // Handle the error
-                        Log.i(TAG, loadAdError.getMessage());
-                        mInterstitialAd2 = null;
+            // set the custom icon to the alert dialog
+            builder.setIcon(R.drawable.change);
 
-                    }
+            // title of the alert dialog
+            builder.setTitle("Change Language:");
 
-                });
+            // list of the items to be displayed to the user in the
+            // form of list so that user can select the item from
+            final String[] listItems = new String[]{"English", "Español", "Français", "Italiano","Deutsch","Português","Русский"};
+
+
+            // the function setSingleChoiceItems is the function which
+            // builds the alert dialog with the single item selection
+            builder.setSingleChoiceItems(listItems, checkedItem[0], (dialog, which) -> {
+                // update the selected item which is selected by the user so that it should be selected
+                // when user opens the dialog next time and pass the instance to setSingleChoiceItems method
+                checkedItem[0] = which;
+
+                // now also update the TextView which previews the selected item
+                //tvSelectedItemPreview.setText("Selected Item is : " + listItems[which]);
+
+
+
+
+                SharedPreferences.Editor myEdit = sharedPreferences.edit();
+
+// Storing the key and its value as the data fetched from edittext
+                myEdit.putInt("index",which);
+
+// Once the changes have been made, we need to commit to apply those changes made,
+// otherwise, it will throw an error
+                myEdit.apply();
+
+                changelang();
+                // when selected an item the dialog should be closed with the dismiss method
+                dialog.dismiss();
+
+
+            });
+
+            // set the negative button if the user is not interested to select or change already selected item
+            builder.setNegativeButton("Cancel", (dialog, which) -> {
+
+            });
+
+            // create and build the AlertDialog instance with the AlertDialog builder instance
+            customAlertDialog = builder.create();
+
+            // show the alert dialog when the button is clicked
+            customAlertDialog.show();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void changelang() {
+
+        selected_index = sharedPreferences.getInt("index", 0);
+        switch (selected_index){
+            case 0:
+                et1.setHint(getString(R.string.hint1));
+                et2.setHint(getString(R.string.hint2));
+                btn1.setText(getString(R.string.btn));
+                txt1.setText(getString(R.string.link));
+                this.setTitle(getString(R.string.app_name));
+                toast_st=getString(R.string.toast);
+                break;
+            case 1:
+                et1.setHint(getString(R.string.hint1_es));
+                et2.setHint(getString(R.string.hint2_es));
+                btn1.setText(getString(R.string.btn_es));
+                txt1.setText(getString(R.string.link_es));
+                this.setTitle(getString(R.string.app_name_es));
+                toast_st=getString(R.string.toast_es);
+                break;
+            case 2:
+                et1.setHint(getString(R.string.hint1_fr));
+                et2.setHint(getString(R.string.hint2_fr));
+                btn1.setText(getString(R.string.btn_fr));
+                txt1.setText(getString(R.string.link_fr));
+                this.setTitle(getString(R.string.app_name_fr));
+                toast_st=getString(R.string.toast_fr);
+                break;
+            case 3:
+                et1.setHint(getString(R.string.hint1_it));
+                et2.setHint(getString(R.string.hint2_it));
+                btn1.setText(getString(R.string.btn_it));
+                txt1.setText(getString(R.string.link_it));
+                this.setTitle(getString(R.string.app_name_it));
+                toast_st=getString(R.string.toast_it);
+                break;
+            case 4:
+                et1.setHint(getString(R.string.hint1_de));
+                et2.setHint(getString(R.string.hint2_de));
+                btn1.setText(getString(R.string.btn_de));
+                txt1.setText(getString(R.string.link_de));
+                this.setTitle(getString(R.string.app_name_de));
+                toast_st=getString(R.string.toast_de);
+                break;
+            case 5:
+                et1.setHint(getString(R.string.hint1_pt));
+                et2.setHint(getString(R.string.hint2_pt));
+                btn1.setText(getString(R.string.btn_pt));
+                txt1.setText(getString(R.string.link_pt));
+                this.setTitle(getString(R.string.app_name_pt));
+                toast_st=getString(R.string.toast_pt);
+                break;
+            case 6:
+                et1.setHint(getString(R.string.hint1_ru));
+                et2.setHint(getString(R.string.hint2_ru));
+                btn1.setText(getString(R.string.btn_ru));
+                txt1.setText(getString(R.string.link_ru));
+                this.setTitle(getString(R.string.app_name_ru));
+                toast_st=getString(R.string.toast_ru);
+                break;
+            default:
+                et1.setHint(getString(R.string.hint1));
+                et2.setHint(getString(R.string.hint2));
+                btn1.setText(getString(R.string.btn));
+                txt1.setText(getString(R.string.link));
+                this.setTitle(getString(R.string.app_name));
+                break;
+        }
     }
 
 
-    private void showInterstitial2() {
-        // Show the ad if it's ready. Otherwise toast and restart the game.
-        if (mInterstitialAd2 != null) {
-            mInterstitialAd2.show(this);
-
-
-        }
-
-        else {
-            //Toast.makeText(this, "Ad did not load", Toast.LENGTH_SHORT).show();
-            loadAd2();
-            gotoActivity2(intent2);
-            //startGame();
-        }
-    }
 
 }

@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -22,7 +23,10 @@ import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 public class MainActivity2 extends AppCompatActivity {
       private AdView mAdView;
     private InterstitialAd mInterstitialAd;
-    public Intent intent,intent2;
+    public Intent intent;
+    String arra_st;
+    TextView txt1,txt2,txt3;
+    String name1,name2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,43 +38,107 @@ public class MainActivity2 extends AppCompatActivity {
 
         loadAd();
 
-        TextView txt1 = (TextView) findViewById(R.id.textView2);
-        TextView txt2 = (TextView) findViewById(R.id.textView3);
-        TextView txt3 = (TextView) findViewById(R.id.textView);
+        txt1 = (TextView) findViewById(R.id.textView2);
+        txt2 = (TextView) findViewById(R.id.textView3);
+        txt3 = (TextView) findViewById(R.id.textView);
         //TextView txt7 = (TextView) findViewById(R.id.textView7);
 
+
+
+
+
+
         Bundle bundle = getIntent().getExtras();
-        String percentage2 = bundle.getString("percentage2","h");
+        String percentage2 = bundle.getString("percentage2","F");
         //Integer percentage = Integer.parseInt(percentage2);
-        String name = bundle.getString("names","Romeo & Juliet");
+        name1 = bundle.getString("name1","Romeo");
+        name2 = bundle.getString("name2","Juliet");
         String result = null;
-        String[] array={"Friends","Love","Affection","Marriage","Enemy","Siblings/Soulmate"};
+
+        changelang();
+
+        String[] arra=arra_st.split(",");
         switch (percentage2) {
             case "F":
-                result = "Friends";
+                result = arra[0];
                 break;
             case "L":
-                result = "Love";
+                result = arra[1];
                 break;
             case "A":
-                result = "Affection";
+                result = arra[2];
                 break;
             case "M":
-                result = "Marriage";
+                result = arra[3];
                 break;
             case "E":
-                result = "Enemy";
+                result = arra[4];
                 break;
             case "S":
-                result = "Siblings/Soulmate";
+                result = arra[5];
                 break;
         }
 
         txt1.setText(result);
-        txt2.setText("Relation between "+name+" is:");
-        txt3.setText("Result");
+
+
         //txt7.setText("");
 
+    }
+
+    public void changelang() {
+        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref",MODE_PRIVATE);
+        int selected_index = sharedPreferences.getInt("index", 0);
+        switch (selected_index){
+            case 0:
+                arra_st=getString(R.string.arra);
+                txt3.setText(getString(R.string.res));
+                txt2.setText("Relation between "+name1+" & "+name2+" is:");
+                this.setTitle(getString(R.string.app_name));
+                break;
+            case 1:
+                arra_st=getString(R.string.arra_es);
+                txt3.setText(getString(R.string.res_es));
+                txt2.setText("La relación entre "+name1+" e "+name2+" es:");
+                this.setTitle(getString(R.string.app_name_es));
+                break;
+            case 2:
+                arra_st=getString(R.string.arra_fr);
+                txt3.setText(getString(R.string.res_fr));
+                txt2.setText("La relation entre "+name1+" et "+name2+" est:");
+                this.setTitle(getString(R.string.app_name_fr));
+                break;
+            case 3:
+                arra_st=getString(R.string.arra_it);
+                txt3.setText(getString(R.string.res_it));
+                txt2.setText("La relazione tra "+name1+" e "+name2+" è:");
+                this.setTitle(getString(R.string.app_name_it));
+                break;
+            case 4:
+                arra_st=getString(R.string.arra_de);
+                txt3.setText(getString(R.string.res_de));
+                txt2.setText("Die Beziehung zwischen "+name1+" und "+name2+" ist:");
+                this.setTitle(getString(R.string.app_name_de));
+                break;
+            case 5:
+                arra_st=getString(R.string.arra_pt);
+                txt3.setText(getString(R.string.res_pt));
+                txt2.setText("A relação entre "+name1+" e "+name2+" é:");
+                this.setTitle(getString(R.string.app_name_pt));
+                break;
+            case 6:
+                arra_st=getString(R.string.arra_ru);
+                txt3.setText(getString(R.string.res_ru));
+                txt2.setText("Отношение между "+name1+" и "+name2+" :");
+                this.setTitle(getString(R.string.app_name_ru));
+                break;
+            default:
+                arra_st=getString(R.string.arra);
+                txt3.setText(getString(R.string.res));
+                txt2.setText("Relation between "+name1+" & "+name2+" is:");
+                this.setTitle(getString(R.string.app_name));
+                break;
+        }
     }
 
     @Override
@@ -89,7 +157,7 @@ public class MainActivity2 extends AppCompatActivity {
         AdRequest adRequest2 = new AdRequest.Builder().build();
 //ca-app-pub-7831928589958637/4023201068
 //ca-app-pub-7831928589958637/6704201737
-        InterstitialAd.load(this,"ca-app-pub-7831928589958637/4023201068", adRequest2,
+        InterstitialAd.load(this,getString(R.string.interestial1), adRequest2,
                 new InterstitialAdLoadCallback() {
                     @Override
                     public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {

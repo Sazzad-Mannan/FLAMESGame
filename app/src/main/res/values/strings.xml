@@ -1,6 +1,102 @@
 <resources>
     <string name="app_name">FLAMES GAME</string>
+    <string name="btn">PLAY</string>
+    <string name="hint1">Your Name</string>
+    <string name="hint2">Partner\'s Name</string>
+    <string name="res">Summary</string>
+    <string name="language">English</string>
+    <string name="toast">You did not enter a name</string>
+    <string name="arra">Friends,Love,Affection,Marriage,Enemy,Siblings/Soulmate</string>
     <string name="link"><u>How it works?</u></string>
     <string name="how">F= Friend\nL= Love\nA= Affection\nM= Marriage\nE= Enemies\nS= Siblings/Soulmate.\n\nSuppose your name is John \nAnd your partner\'s name is Anny. \nFirst we will cut all similar alphabets match in both words.\nHere similar alphabets are n \nAfter cutting n we get joh any \nCount the number of alphabet remaining. \nHere is 6. \nNow count this number in FLAMES word,check where it stop.\nHere it stops in alphabet S.\nSo result will be S=Siblings/Soulmate.\n</string>
     <string name="fun">[NB: It\'s a fun game,it don\'t indicate real relationship prediction.]</string>
+
+
+    <!--    Portuguese-->
+    <string name="app_name_pt">JOGO DAS CHAMAS</string>
+    <string name="btn_pt">JOGAR</string>
+    <string name="hint1_pt">Seu nome</string>
+    <string name="hint2_pt">Nome do parceiro</string>
+    <string name="res_pt">Resumo</string>
+    <string name="language_pt">Português</string>
+    <string name="toast_pt">Você não digitou um nome</string>
+    <string name="arra_pt">Amigos,Amor,Carinho,Casamento,Inimigo,Irmãos/Alma Gêmea</string>
+    <string name="link_pt"><u>Como funciona?</u></string>
+    <string name="how_pt">F= Amigo\nL= Amor\nA= Carinho\nM= Casamento\nE= Inimigos\nS= Irmãos/Alma Gêmea.\n\nSuponha que seu nome seja John \nE o nome de seu parceiro seja Anny. \nPrimeiro vamos cortar todos os alfabetos semelhantes correspondentes em ambas as palavras.\nAqui estão os alfabetos semelhantes n \nDepois de cortar n, obtemos joh qualquer \nConte o número de alfabeto restante. \nAqui está 6. \nAgora conte este número na palavra FLAMES, verifique onde termina.\nAqui termina no alfabeto S.\nEntão o resultado será S=Irmãos/Alma Gêmea.\n</string>
+    <string name="fun_pt">[NB: É um jogo divertido, não indica previsão de relacionamento real.]</string>
+
+
+    <!--    Italian-->
+    <string name="app_name_it">GIOCO DI FIAMME</string>
+    <string name="btn_it">GIOCARE</string>
+    <string name="hint1_it">Il tuo nome</string>
+    <string name="hint2_it">Nome del compagno</string>
+    <string name="res_it">Riepilogo</string>
+    <string name="language_it">Italiano</string>
+    <string name="toast_it">Non hai inserito un nome</string>
+    <string name="arra_it">Amici, Amore, Affetto, Matrimonio, Nemico, Fratelli/anima gemella</string>
+    <string name="link_it"><u>Come funziona?</u></string>
+    <string name="how_it">F= Amico\nL= Amore\nA= Affetto\nM= Matrimonio\nE= Nemici\nS= Fratelli/Anima gemella.\n\nSupponiamo che il tuo nome sia John \nE il nome del tuo partner sia Anny. \nPrima taglieremo tutte le corrispondenze di alfabeti simili in entrambe le parole.\nQui alfabeti simili sono n \nDopo aver tagliato n otteniamo joh any \nConta il numero di alfabeti rimanenti. \nEcco 6. \nOra conta questo numero nella parola FLAMES, controlla dove si ferma.\nQui si ferma nell\'alfabeto S.\nQuindi il risultato sarà S=Fratelli/Anima gemella.\n</string>
+    <string name="fun_it">[NB: è un gioco divertente, non indica una vera previsione di relazione.]</string>
+
+
+    <!--    French-->
+    <string name="app_name_fr">JEU DES FLAMMES</string>
+    <string name="btn_fr">JOUER</string>
+    <string name="hint1_fr">votre nom</string>
+    <string name="hint2_fr">Le nom du partenaire</string>
+    <string name="res_fr">Résumé</string>
+    <string name="language_fr">Français</string>
+    <string name="toast_fr">Vous n\'avez pas saisi de nom</string>
+    <string name="arra_fr">Amis, Amour, Affection, Mariage, Ennemi, Frères et sœurs/âme sœur</string>
+    <string name="link_fr"><u>Comment ça fonctionne?</u></string>
+    <string name="how_fr">F= Ami\nL= Amour\nA= Affection\nM= Mariage\nE= Ennemis\nS= Frères et sœurs/Âme sœur.\n\nSupposons que votre nom est John \nEt le nom de votre partenaire est Anny. \nNous allons d\'abord couper tous les alphabets similaires dans les deux mots.\nIci, les alphabets similaires sont n \nAprès avoir coupé n, nous obtenons joh any \nComptez le nombre d\'alphabets restants. \nVoici 6. \nComptez maintenant ce nombre en mot FLAMES, vérifiez où il s\'arrête.\nIci, il s\'arrête en alphabet S.\nDonc, le résultat sera S=Frères/Soulmate.\n</string>
+    <string name="fun_fr">[NB: C\'est un jeu amusant, il n\'indique pas de véritable prédiction de relation.]</string>
+
+
+    <!--    German-->
+    <string name="app_name_de">FLAMMENSPIEL</string>
+    <string name="btn_de">SPIELEN</string>
+    <string name="hint1_de">Ihren Namen</string>
+    <string name="hint2_de">Name des Partners</string>
+    <string name="res_de">Zusammenfassung</string>
+    <string name="language_de">Deutsch</string>
+    <string name="toast_de">Sie haben keinen Namen eingegeben</string>
+    <string name="arra_de">Freunde, Liebe, Zuneigung, Ehe, Feind, Geschwister/Seelenverwandter</string>
+    <string name="link_de"><u>Wie es funktioniert?</u></string>
+    <string name="how_de">F= Freund\nL= Liebe\nA= Zuneigung\nM= Ehe\nE= Feinde\nS= Geschwister/Seelenverwandter.\n\nAngenommen, Ihr Name ist John \nUnd der Name Ihres Partners ist Anny. \nZuerst werden wir alle ähnlichen Alphabete ausschneiden, die in beiden Wörtern übereinstimmen.\nHier gibt es n ähnliche Alphabete. \nNachdem wir n ausgeschnitten haben, erhalten wir joh alle. \nZählen Sie die Anzahl der verbleibenden Alphabete. \nHier ist 6. \nJetzt zähle diese Zahl im FLAMES-Wort und überprüfe, wo sie aufhört.\nHier endet sie im Alphabet S.\nDas Ergebnis ist also S=Geschwister/Seelenverwandte.\n</string>
+    <string name="fun_de">[NB: Es ist ein lustiges Spiel, es gibt keine echte Beziehungsvorhersage.]</string>
+
+
+    <!--  spanish  -->
+    <string name="app_name_es">JUEGO DE LLAMAS</string>
+    <string name="btn_es">JUGAR</string>
+    <string name="hint1_es">Su nombre</string>
+    <string name="hint2_es">Nombre del compañero</string>
+    <string name="res_es">Resumen</string>
+    <string name="language_es">Español</string>
+    <string name="toast_es">No ingresaste un nombre</string>
+    <string name="arra_es">Amigos, Amor, Afecto, Matrimonio, Enemigo, Hermanos/Alma gemela</string>
+    <string name="link_es"><u>¿Cómo funciona?</u></string>
+    <string name="how_es">F= Amigo\nL= Amor\nA= Afecto\nM= Matrimonio\nE= Enemigos\nS= Hermanos/Alma gemela.\n\nSuponga que su nombre es John \nY el nombre de su pareja es Anny. \nPrimero cortaremos todos los alfabetos similares que coincidan en ambas palabras.\nAquí los alfabetos similares son n \nDespués de cortar n obtenemos joh any \nContamos el número de alfabetos restantes. \nAquí hay 6. \nAhora cuenta este número en la palabra FLAMES, mira dónde se detiene.\nAquí se detiene en el alfabeto S.\nEntonces el resultado será S=Hermanos/Alma gemela.\n</string>
+    <string name="fun_es">[NB: es un juego divertido, no indica una predicción de relación real.]</string>
+
+    <!--    Russian-->
+    <string name="app_name_ru">ИГРА ПЛАМЯ</string>
+    <string name="btn_ru">ИГРАТЬ</string>
+    <string name="hint1_ru">Ваше имя</string>
+    <string name="hint2_ru">Имя партнера</string>
+    <string name="res_ru">Краткое содержание</string>
+    <string name="language_ru">Русский</string>
+    <string name="toast_ru">Вы не ввели имя</string>
+    <string name="arra_ru">Друзья, любовь, привязанность, брак, враг, братья и сестры / родственная душа</string>
+    <string name="link_ru"><u>Как это работает?</u></string>
+    <string name="how_ru">F= Друг\nL= Любовь\nA= Привязанность\nM= Брак\nE= Враги\nS= Братья и сестры/родственная душа.\n\nПредположим, вас зовут Джон\nА вашего партнера зовут Энни. \nСначала мы вырежем все одинаковые алфавиты, совпадающие в обоих словах.\nЗдесь похожих алфавитов n \nПосле вырезания n мы получим joh any \nПодсчитаем количество оставшихся алфавитов. \nВот 6. \nТеперь сосчитайте это число в слове FLAMES, проверьте, где оно останавливается.\nЗдесь оно останавливается в алфавите S.\nТаким образом, результатом будет S=Братья и сестры/Родственная душа.\n</string>
+    <string name="fun_ru">[NB: Это забавная игра, она не указывает на предсказание реальных отношений.]</string>
+
+
+    <string name="interestial2">ca-app-pub-7831928589958637/3640763896</string>
+    <string name="interestial1">ca-app-pub-7831928589958637/4023201068</string>
+
+
 </resources>
