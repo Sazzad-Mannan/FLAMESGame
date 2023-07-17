@@ -54,31 +54,36 @@ public class Main2Activity extends AppCompatActivity {
                 this.setTitle(getString(R.string.app_name));
                 break;
             case 1:
+                txt1.setText(getString(R.string.how_indo));
+                txt2.setText(getString(R.string.fun_indo));
+                this.setTitle(getString(R.string.app_name_indo));
+                break;
+            case 2:
                 txt1.setText(getString(R.string.how_es));
                 txt2.setText(getString(R.string.fun_es));
                 this.setTitle(getString(R.string.app_name_es));
                 break;
-            case 2:
+            case 3:
                 txt1.setText(getString(R.string.how_fr));
                 txt2.setText(getString(R.string.fun_fr));
                 this.setTitle(getString(R.string.app_name_fr));
                 break;
-            case 3:
+            case 4:
                 txt1.setText(getString(R.string.how_it));
                 txt2.setText(getString(R.string.fun_it));
                 this.setTitle(getString(R.string.app_name_it));
                 break;
-            case 4:
+            case 5:
                 txt1.setText(getString(R.string.how_de));
                 txt2.setText(getString(R.string.fun_de));
                 this.setTitle(getString(R.string.app_name_de));
                 break;
-            case 5:
+            case 6:
                 txt1.setText(getString(R.string.how_pt));
                 txt2.setText(getString(R.string.fun_pt));
                 this.setTitle(getString(R.string.app_name_pt));
                 break;
-            case 6:
+            case 7:
                 txt1.setText(getString(R.string.how_ru));
                 txt2.setText(getString(R.string.fun_ru));
                 this.setTitle(getString(R.string.app_name_ru));

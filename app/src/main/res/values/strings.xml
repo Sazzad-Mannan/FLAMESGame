@@ -11,6 +11,19 @@
     <string name="how">F= Friend\nL= Love\nA= Affection\nM= Marriage\nE= Enemies\nS= Siblings/Soulmate.\n\nSuppose your name is John \nAnd your partner\'s name is Anny. \nFirst we will cut all similar alphabets match in both words.\nHere similar alphabets are n \nAfter cutting n we get joh any \nCount the number of alphabet remaining. \nHere is 6. \nNow count this number in FLAMES word,check where it stop.\nHere it stops in alphabet S.\nSo result will be S=Siblings/Soulmate.\n</string>
     <string name="fun">[NB: It\'s a fun game,it don\'t indicate real relationship prediction.]</string>
 
+<!--    Indonesian-->
+    <string name="app_name_indo">PERMAINAN API</string>
+    <string name="btn_indo">BERMAIN</string>
+    <string name="hint1_indo">Namamu</string>
+    <string name="hint2_indo">Nama pasangan</string>
+    <string name="res_indo">Ringkasan</string>
+    <string name="language_indo">bahasa Indonesia</string>
+    <string name="toast_indo">Anda tidak memasukkan nama</string>
+    <string name="arra_indo">Teman, Cinta, Kasih Sayang, Pernikahan, Musuh, Saudara/Soulmate</string>
+    <string name="link_indo"><u>Bagaimana itu bekerja?</u></string>
+    <string name="how_indo">F= Teman\nL= Cinta\nA= Kasih Sayang\nM= Pernikahan\nE= Musuh\nS= Saudara/Belahan Jiwa.\n\nMisalkan nama Anda adalah John \nDan nama pasangan Anda adalah Anny. \nPertama-tama kita akan memotong semua huruf yang mirip yang cocok dengan kedua kata.\nDi sini huruf yang mirip adalah n \nSetelah memotong n kita mendapatkan joh any \nHitung jumlah alfabet yang tersisa. \nIni adalah 6. \nSekarang hitung angka ini dalam kata FLAMES, periksa di mana berhenti.\nDi sini berhenti dalam alfabet S.\nJadi hasilnya adalah S=Saudara/Soulmate.\n</string>
+    <string name="fun_indo">[NB: Ini permainan yang menyenangkan, tidak menunjukkan prediksi hubungan nyata.]</string>
+
 
     <!--    Portuguese-->
     <string name="app_name_pt">JOGO DAS CHAMAS</string>

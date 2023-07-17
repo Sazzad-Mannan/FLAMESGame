@@ -1,6 +1,7 @@
 package com.riftech.flamesgame;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -27,6 +28,12 @@ import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+import com.google.android.ump.ConsentDebugSettings;
+import com.google.android.ump.ConsentForm;
+import com.google.android.ump.ConsentInformation;
+import com.google.android.ump.ConsentRequestParameters;
+import com.google.android.ump.FormError;
+import com.google.android.ump.UserMessagingPlatform;
 
 public class MainActivity extends AppCompatActivity {
     private AdView mAdView;
@@ -51,10 +58,56 @@ public class MainActivity extends AppCompatActivity {
     int selected_index;
     String toast_st;
 
+    private ConsentInformation consentInformation;
+    private ConsentForm consentForm;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//                ConsentDebugSettings debugSettings = new ConsentDebugSettings.Builder(this)
+//                .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
+//                .addTestDeviceHashedId("C0C3585D7681D1732E0C5A43C804A1C6")
+//                .build();
+//
+//
+//        ConsentRequestParameters params = new ConsentRequestParameters
+//                .Builder()
+//                .setConsentDebugSettings(debugSettings)
+//                .build();
+
+
+
+        // Set tag for under age of consent. false means users are not under
+        // age.
+        ConsentRequestParameters params = new ConsentRequestParameters
+                .Builder()
+                .setTagForUnderAgeOfConsent(false)
+                .build();
+
+        consentInformation = UserMessagingPlatform.getConsentInformation(this);
+        consentInformation.requestConsentInfoUpdate(
+                this,
+                params,
+                new ConsentInformation.OnConsentInfoUpdateSuccessListener() {
+                    @Override
+                    public void onConsentInfoUpdateSuccess() {
+                        // The consent information state was updated.
+                        // You are now ready to check if a form is available.
+
+                        if (consentInformation.isConsentFormAvailable()) {
+
+                            loadForm();
+                        }
+                    }
+                },
+                new ConsentInformation.OnConsentInfoUpdateFailureListener() {
+                    @Override
+                    public void onConsentInfoUpdateFailure(FormError formError) {
+                        // Handle the error.
+                    }
+                });
 
         // Storing data into SharedPreferences
         sharedPreferences = getSharedPreferences("MySharedPref",MODE_PRIVATE);
@@ -205,7 +258,7 @@ public class MainActivity extends AppCompatActivity {
 
             // list of the items to be displayed to the user in the
             // form of list so that user can select the item from
-            final String[] listItems = new String[]{"English", "Español", "Français", "Italiano","Deutsch","Português","Русский"};
+            final String[] listItems = new String[]{"English","Bahasa Indonesia", "Español", "Français", "Italiano","Deutsch","Português","Русский"};
 
 
             // the function setSingleChoiceItems is the function which
@@ -264,6 +317,14 @@ public class MainActivity extends AppCompatActivity {
                 toast_st=getString(R.string.toast);
                 break;
             case 1:
+                et1.setHint(getString(R.string.hint1_indo));
+                et2.setHint(getString(R.string.hint2_indo));
+                btn1.setText(getString(R.string.btn_indo));
+                txt1.setText(getString(R.string.link_indo));
+                this.setTitle(getString(R.string.app_name_indo));
+                toast_st=getString(R.string.toast_indo);
+                break;
+            case 2:
                 et1.setHint(getString(R.string.hint1_es));
                 et2.setHint(getString(R.string.hint2_es));
                 btn1.setText(getString(R.string.btn_es));
@@ -271,7 +332,7 @@ public class MainActivity extends AppCompatActivity {
                 this.setTitle(getString(R.string.app_name_es));
                 toast_st=getString(R.string.toast_es);
                 break;
-            case 2:
+            case 3:
                 et1.setHint(getString(R.string.hint1_fr));
                 et2.setHint(getString(R.string.hint2_fr));
                 btn1.setText(getString(R.string.btn_fr));
@@ -279,7 +340,7 @@ public class MainActivity extends AppCompatActivity {
                 this.setTitle(getString(R.string.app_name_fr));
                 toast_st=getString(R.string.toast_fr);
                 break;
-            case 3:
+            case 4:
                 et1.setHint(getString(R.string.hint1_it));
                 et2.setHint(getString(R.string.hint2_it));
                 btn1.setText(getString(R.string.btn_it));
@@ -287,7 +348,7 @@ public class MainActivity extends AppCompatActivity {
                 this.setTitle(getString(R.string.app_name_it));
                 toast_st=getString(R.string.toast_it);
                 break;
-            case 4:
+            case 5:
                 et1.setHint(getString(R.string.hint1_de));
                 et2.setHint(getString(R.string.hint2_de));
                 btn1.setText(getString(R.string.btn_de));
@@ -295,7 +356,7 @@ public class MainActivity extends AppCompatActivity {
                 this.setTitle(getString(R.string.app_name_de));
                 toast_st=getString(R.string.toast_de);
                 break;
-            case 5:
+            case 6:
                 et1.setHint(getString(R.string.hint1_pt));
                 et2.setHint(getString(R.string.hint2_pt));
                 btn1.setText(getString(R.string.btn_pt));
@@ -303,7 +364,7 @@ public class MainActivity extends AppCompatActivity {
                 this.setTitle(getString(R.string.app_name_pt));
                 toast_st=getString(R.string.toast_pt);
                 break;
-            case 6:
+            case 7:
                 et1.setHint(getString(R.string.hint1_ru));
                 et2.setHint(getString(R.string.hint2_ru));
                 btn1.setText(getString(R.string.btn_ru));
@@ -321,6 +382,38 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void loadForm() {
+        // Loads a consent form. Must be called on the main thread.
+        UserMessagingPlatform.loadConsentForm(
+                this,
+                new UserMessagingPlatform.OnConsentFormLoadSuccessListener() {
+                    @Override
+                    public void onConsentFormLoadSuccess(ConsentForm consentForm) {
+                        MainActivity.this.consentForm = consentForm;
+                        if (consentInformation.getConsentStatus() == ConsentInformation.ConsentStatus.REQUIRED) {
+                            consentForm.show(
+                                    MainActivity.this,
+                                    new ConsentForm.OnConsentFormDismissedListener() {
+                                        @Override
+                                        public void onConsentFormDismissed(@Nullable FormError formError) {
+                                            if (consentInformation.getConsentStatus() == ConsentInformation.ConsentStatus.OBTAINED) {
+                                                // App can start requesting ads.
+                                            }
 
+                                            // Handle dismissal by reloading form.
+                                            loadForm();
+                                        }
+                                    });
+                        }
+                    }
+                },
+                new UserMessagingPlatform.OnConsentFormLoadFailureListener() {
+                    @Override
+                    public void onConsentFormLoadFailure(FormError formError) {
+                        // Handle the error.
+                    }
+                }
+        );
+    }
 
 }

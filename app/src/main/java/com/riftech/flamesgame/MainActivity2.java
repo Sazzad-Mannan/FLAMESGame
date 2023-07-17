@@ -97,36 +97,42 @@ public class MainActivity2 extends AppCompatActivity {
                 this.setTitle(getString(R.string.app_name));
                 break;
             case 1:
+                arra_st=getString(R.string.arra_indo);
+                txt3.setText(getString(R.string.res_indo));
+                txt2.setText("Hubungan antara "+name1+" & "+name2+" adalah:");
+                this.setTitle(getString(R.string.app_name_indo));
+                break;
+            case 2:
                 arra_st=getString(R.string.arra_es);
                 txt3.setText(getString(R.string.res_es));
                 txt2.setText("La relación entre "+name1+" e "+name2+" es:");
                 this.setTitle(getString(R.string.app_name_es));
                 break;
-            case 2:
+            case 3:
                 arra_st=getString(R.string.arra_fr);
                 txt3.setText(getString(R.string.res_fr));
                 txt2.setText("La relation entre "+name1+" et "+name2+" est:");
                 this.setTitle(getString(R.string.app_name_fr));
                 break;
-            case 3:
+            case 4:
                 arra_st=getString(R.string.arra_it);
                 txt3.setText(getString(R.string.res_it));
                 txt2.setText("La relazione tra "+name1+" e "+name2+" è:");
                 this.setTitle(getString(R.string.app_name_it));
                 break;
-            case 4:
+            case 5:
                 arra_st=getString(R.string.arra_de);
                 txt3.setText(getString(R.string.res_de));
                 txt2.setText("Die Beziehung zwischen "+name1+" und "+name2+" ist:");
                 this.setTitle(getString(R.string.app_name_de));
                 break;
-            case 5:
+            case 6:
                 arra_st=getString(R.string.arra_pt);
                 txt3.setText(getString(R.string.res_pt));
                 txt2.setText("A relação entre "+name1+" e "+name2+" é:");
                 this.setTitle(getString(R.string.app_name_pt));
                 break;
-            case 6:
+            case 7:
                 arra_st=getString(R.string.arra_ru);
                 txt3.setText(getString(R.string.res_ru));
                 txt2.setText("Отношение между "+name1+" и "+name2+" :");
