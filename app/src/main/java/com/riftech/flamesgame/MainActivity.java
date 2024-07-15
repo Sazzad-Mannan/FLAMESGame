@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -66,16 +67,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//                ConsentDebugSettings debugSettings = new ConsentDebugSettings.Builder(this)
-//                .setDebugGeography(ConsentDebugSettings.DebugGeography.DEBUG_GEOGRAPHY_EEA)
-//                .addTestDeviceHashedId("C0C3585D7681D1732E0C5A43C804A1C6")
-//                .build();
-//
-//
-//        ConsentRequestParameters params = new ConsentRequestParameters
-//                .Builder()
-//                .setConsentDebugSettings(debugSettings)
-//                .build();
+        // Set the status bar text color to dark
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
 
 
 
@@ -301,6 +296,25 @@ public class MainActivity extends AppCompatActivity {
             // show the alert dialog when the button is clicked
             customAlertDialog.show();
         }
+
+        if (id == R.id.action_share) {
+            // do something here
+            // single item array instance to store which element is selected by user initially
+            // it should be set to zero meaning none of the element is selected by default
+            try {
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Flames Game");
+                String shareMessage= "\nLet me recommend you this application\n\n";
+                shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName() +"\n\n";
+                shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                startActivity(Intent.createChooser(shareIntent, "choose one"));
+            } catch(Exception e) {
+                //e.toString();
+            }
+        }
+
+
         return super.onOptionsItemSelected(item);
     }
 

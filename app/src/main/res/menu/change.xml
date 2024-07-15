@@ -9,7 +9,12 @@
         android:title="@string/language"
         app:showAsAction="always"
         />
-
+    <item
+        android:id="@+id/action_share"
+        android:icon="@drawable/share"
+        android:title="@string/language"
+        app:showAsAction="always"
+        />
 
 
 </menu>
